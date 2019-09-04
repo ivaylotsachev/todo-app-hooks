@@ -7,12 +7,10 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
-function TodoItem({ id, task, completed }) {
-    console.error('props', id, task);
-
+function TodoItem({ id, task, completed, removeTodo, toggleTodo }) {
     return (
         <ListItem>
-            <Checkbox checked={completed} tabIndex={-1} />
+            <Checkbox checked={completed} onClick={() => toggleTodo(id)} />
             <ListItemText
                 style={{
                     color: 'black',
@@ -23,7 +21,7 @@ function TodoItem({ id, task, completed }) {
                 {task}
             </ListItemText>
             <ListItemSecondaryAction>
-                <IconButton area-label="Delete">
+                <IconButton area-label="Delete" onClick={() => removeTodo(id)}>
                     <DeleteIcon></DeleteIcon>
                 </IconButton>
                 <IconButton area-label="Edit">

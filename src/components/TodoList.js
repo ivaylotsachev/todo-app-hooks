@@ -4,17 +4,19 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import TodoItem from './TodoItem';
 
-function TodoList(props) {
-    console.error('list props', props);
+function TodoList({ todos, removeTodo, toggleTodo }) {
+    console.error('list props', todos);
 
     return (
         <Paper>
             <List>
-                {props.todos.map(todo => (
-                    <Fragment>
-                        <TodoItem {...todo} key={todo.id} />
-                        <Divider />
-                    </Fragment>
+                {todos.map(todo => (
+                    <TodoItem
+                        key={todo.id}
+                        {...todo}
+                        removeTodo={removeTodo}
+                        toggleTodo={toggleTodo}
+                    />
                 ))}
             </List>
         </Paper>

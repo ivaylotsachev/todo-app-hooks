@@ -2,8 +2,6 @@ import React from 'react';
 import { Paper, TextField } from '@material-ui/core';
 import useInputState from '../hooks/useInputState';
 
-import uuid from 'uuid';
-
 function TodoForm(props) {
     const [value, handleChange, resetValue] = useInputState('');
 
@@ -12,11 +10,7 @@ function TodoForm(props) {
             <form
                 onSubmit={e => {
                     e.preventDefault();
-                    props.addTodo({
-                        id: uuid(),
-                        task: value,
-                        completed: false
-                    });
+                    props.addTodo(value);
                     resetValue();
                 }}
             >
