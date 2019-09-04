@@ -15,10 +15,11 @@ const initialValue = [
 ];
 
 const TodoApp = () => {
-    const [todos, setTodos] = useState(initialValue);
+    let [todos, setTodos] = useState(initialValue);
 
     const addTodo = newTodo => {
         setTodos([...todos, { id: uuid(), task: newTodo, completed: false }]);
+        localStorage.setItem('todos-with-hooks', JSON.stringify(todos));
     };
 
     const removeTodo = todoId => {
@@ -31,7 +32,16 @@ const TodoApp = () => {
             todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
         );
 
-        console.error('upda', updatedTodos);
+        setTodos(updatedTodos);
+    };
+
+    const editTodo = (todoId, newTask) => {
+        console.error('edit', todoId, newTask);
+
+        const updatedTodos = todos.map(todo =>
+            todo.id === todoId ? { ...todo, task: newTask } : todo
+        );
+
         setTodos(updatedTodos);
     };
 
@@ -59,6 +69,7 @@ const TodoApp = () => {
                             todos={todos}
                             removeTodo={removeTodo}
                             toggleTodo={toggleTodo}
+                            editTodo={editTodo}
                         />
                     </Grid>
                 </Grid>
