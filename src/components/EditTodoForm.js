@@ -7,6 +7,7 @@ function EditTodoForm({ id, task, editTodo, toggle }) {
 
     return (
         <form
+            style={{ marginLeft: '1rem', width: '100%' }}
             onSubmit={e => {
                 e.preventDefault();
                 editTodo(id, value);
@@ -18,6 +19,7 @@ function EditTodoForm({ id, task, editTodo, toggle }) {
                 value={value}
                 onChange={handleChange}
                 fullWidth
+                autoFocus
             ></TextField>
         </form>
     );
